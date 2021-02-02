@@ -24,12 +24,12 @@ export default function Header({ title, onPress, colorImage = 'black' }) {
                 onPress={() => onPress()}
             >
                 {
-                    colorImage === 'black' ?
-                        <Image source={require('../Assest/Icons/back.png')} style={styles.back} /> :
-                        <Image source={require('../Assest/Icons/back-white.png')} style={styles.back} />
+                    colorImage === 'black'
+                        ? <Image source={require('../Assest/Icons/back.png')} style={styles.back} />
+                        : <Image source={require('../Assest/Icons/back-white.png')} style={styles.back} />
                 }
             </TouchableHighlight>
-            <Text style={styles.title}>{title ? title : ''}</Text>
+            <Text style={styles.title}>{title || ''}</Text>
         </View>
     );
 }
@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     title: {
         marginLeft: 20,
         fontWeight: 'bold',
-        fontSize: 20
-    }
+        fontSize: 20,
+    },
 });

@@ -1,8 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import Colors from '../Theme/Color'
+/* eslint-disable no-use-before-define */
+/* eslint-disable indent */
+import React from 'react';
+import {
+    StyleSheet, Text, TouchableOpacity,
+} from 'react-native';
 
-export default function ButtonSmall({ title, onPress, style, styleTitle, children }) {
+export default function ButtonSmall({
+    title,
+    onPress,
+    style,
+    styleTitle,
+    children,
+}) {
     return (
         <TouchableOpacity
             style={[styles.button, style]}
@@ -13,7 +22,7 @@ export default function ButtonSmall({ title, onPress, style, styleTitle, childre
                 <Text style={[styles.title, styleTitle]}>{title}</Text>
             </>
         </TouchableOpacity>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -26,5 +35,5 @@ const styles = StyleSheet.create({
     },
     title: {
 
-    }
-})
+    },
+});

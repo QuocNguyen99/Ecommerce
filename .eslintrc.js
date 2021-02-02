@@ -18,5 +18,7 @@ module.exports = {
   ],
   rules: {
     'arrow-body-style': 'warn',
+    indent: 'off',
+    'no-use-before-define': ['error', { variables: false }],
   },
 };

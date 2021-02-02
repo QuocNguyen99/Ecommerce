@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Formik } from 'formik';
 
-export default function FormField({ validationSchema, onSubmit, initialValues, children }) {
-    return (
+export default function FormField({
+  validationSchema, onSubmit, initialValues, children,
+}) {
+  return (
         <Formik
             initialValues={initialValues}
             onSubmit={onSubmit}
@@ -15,7 +17,7 @@ export default function FormField({ validationSchema, onSubmit, initialValues, c
                 </>
             )}
         </Formik>
-    )
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
