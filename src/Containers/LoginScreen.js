@@ -1,16 +1,156 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Dimensions, Image, TouchableOpacity } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
+
 import Header from '../Components/Header';
+// import Text from '../Components/Text';
+import Colors from '../Theme/Color';
+import FormField from '../Components/Form/FormField'
+import TextInputField from '../Components/Form/TextInputField';
+import ButtonSubmit from "../Components/Form/ButtonSubmit";
+import ButtonSmall from '../Components/ButtonSmall';
+
+const { width } = Dimensions.get('screen');
 
 export default function LoginScreen() {
+
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+
+    const handleBack = () => {
+        return alert('Back')
+    }
+    const handleMail = () => {
+        return alert('handleMail')
+    }
+    const handleFacebook = () => {
+        return alert('handleFacebook')
+    }
     return (
-        <View style={styles.b}>
-            <Header />
+        <View style={styles.container}>
+            <Header
+                onPress={handleBack}
+                colorImage='black'
+            />
+            <View style={styles.body}>
+                <Text style={styles.welcome} >Welcome to Login</Text>
+                <Text style={styles.normalText} >'Please fill E-mail & password to login your app account.
+                <TouchableOpacity
+                        onPress={() => alert('Move to Sign Up')}
+                    >
+                        <Text style={styles.textSignIn} > Sign Up</Text>
+                    </TouchableOpacity>
+                </Text>
+
+
+
+                <View style={styles.input}>
+                    <FormField
+                        initialValues={{ email: '', password: '' }}
+                        onSubmit={(value) => alert(value.email + "++" + value.password)}
+                    >
+                        <TextInputField
+                            autoCapitalize='none'
+                            styleTitle={styles.textSubTitle}
+                            name='email'
+                            title='Email'
+                        />
+                        <TextInputField
+                            autoCapitalize='none'
+                            secureTextEntry
+                            styleTitle={styles.textSubTitle}
+                            name='password'
+                            title='Password'
+                        />
+
+                        <CheckBox
+                            style={styles.checkbox}
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                        <View style={styles.containerButton}>
+                            <ButtonSubmit
+                                title='Login Now'
+                                style={styles.button}
+                            />
+                        </View>
+                    </FormField>
+                    <View style={styles.otherButton}>
+                        <ButtonSmall
+                            style={styles.buttonOtherEmail}
+                            styleTitle={styles.otherButtonTitle}
+                            title='Gmail'
+                            onPress={handleMail}
+                        >
+                            <Image source={require('../Assest/Icons/gmail.png')} style={styles.imageOtherButton} />
+                        </ButtonSmall>
+
+                        <ButtonSmall
+                            style={styles.buttonOtherFacebook}
+                            styleTitle={styles.otherButtonTitle}
+                            title='Facebook'
+                            onPress={handleFacebook}
+                        >
+                            <Image source={require('../Assest/Icons/facebook.png')} style={styles.imageOtherButton} />
+                        </ButtonSmall>
+                    </View>
+                </View>
+            </View>
         </View>
     );
 }
 const styles = StyleSheet.create({
-    b: {
+    container: {
         flex: 1,
+        paddingHorizontal: 30,
+        backgroundColor: Colors.primary,
     },
+    containerButton: {
+        marginTop: 30
+    },
+    body: {
+        marginTop: 20,
+    },
+    welcome: {
+        fontWeight: 'bold',
+        fontSize: 25,
+    },
+    normalText: {
+        marginTop: 10,
+        fontSize: 16,
+        lineHeight: 30,
+        color: Colors.gray
+    },
+    textSignIn: {
+        color: Colors.purple,
+        fontSize: 16,
+        lineHeight: 30,
+    },
+    input: {
+
+    },
+    checkbox: {
+        marginTop: 20,
+    },
+    otherButton: {
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    buttonOtherEmail: {
+        width: width * 0.4,
+        backgroundColor: Colors.gmail
+    },
+    buttonOtherFacebook: {
+        width: width * 0.4,
+        backgroundColor: Colors.facebook
+    },
+    otherButtonTitle: {
+        marginLeft: 5,
+        color: Colors.primary
+    },
+    imageOtherButton: {
+        width: 20,
+        height: 20,
+    }
 });
