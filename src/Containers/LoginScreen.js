@@ -28,13 +28,13 @@ export default function LoginScreen() {
             />
             <View style={styles.body}>
                 <Text style={styles.welcome} >Welcome to Login</Text>
-                <Text style={styles.normalText} >Please fill E-mail &
-                password to login your app account.
-                <TouchableOpacity
-                        onPress={() => alert('Move to Sign Up')}
-                    >
-                        <Text style={styles.textSignIn} > Sign Up</Text>
-                    </TouchableOpacity>
+                <Text style={styles.normalText} >Please fill
+                E-mail & password to login your app account.
+                        <Text
+                        style={styles.textSignIn}
+                        onPress={() => alert('Move to Sign Up')}>
+                        Sign Up
+                        </Text>
                 </Text>
 
                 <View style={styles.input}>
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     textSignIn: {
         color: Colors.purple,
         fontSize: 16,
-        lineHeight: 25,
     },
     input: {
 
