@@ -1,17 +1,18 @@
 import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
+
 import Colors from '../Theme/Color';
 import Text from './Text';
 
 export default function AppTextInput({ title, style, ...otherProps }) {
   return (
-        <View style={styles.container}>
-            <Text title={title} style={styles.textTitle} />
-            <View style={[styles.containerInput, style]}>
-                <TextInput style={styles.textInput} {...otherProps} />
-            </View>
+    <View style={styles.container}>
+      <Text title={title} style={styles.textTitle} />
+      <View style={[styles.containerInput, style]}>
+        <TextInput style={styles.textInput} {...otherProps} />
+      </View>
 
-        </View>
+    </View>
   );
 }
 

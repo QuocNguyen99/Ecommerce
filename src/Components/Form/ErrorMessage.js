@@ -5,12 +5,13 @@ import Text from '../Text';
 export default function ErrorMessage({ error, visible }) {
   if (!visible || !error) return null;
   return (
-        <Text style={styles.text}>{error}</Text>
+    <Text title={error} style={styles.text} />
   );
 }
 
 const styles = StyleSheet.create({
   text: {
     color: 'red',
+    fontSize: 14
   },
 });

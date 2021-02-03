@@ -17,18 +17,22 @@ const { height } = Dimensions.get('screen');
 export default function Header({ title, onPress, colorImage = 'black' }) {
     return (
         <View style={styles.headerContainer}>
+            {
+                onPress ? (
+                    <TouchableHighlight
+                        style={styles.back}
+                        underlayColor='lightgray'
+                        onPress={() => onPress()}
+                    >
+                        {
+                            colorImage === 'black'
+                                ? <Image source={require('../Assest/Icons/back.png')} style={styles.back} />
+                                : <Image source={require('../Assest/Icons/back-white.png')} style={styles.back} />
+                        }
+                    </TouchableHighlight>
+                ) : null
+            }
 
-            <TouchableHighlight
-                style={styles.back}
-                underlayColor='lightgray'
-                onPress={() => onPress()}
-            >
-                {
-                    colorImage === 'black'
-                        ? <Image source={require('../Assest/Icons/back.png')} style={styles.back} />
-                        : <Image source={require('../Assest/Icons/back-white.png')} style={styles.back} />
-                }
-            </TouchableHighlight>
             <Text style={styles.title}>{title || ''}</Text>
         </View>
     );

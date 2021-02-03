@@ -1,29 +1,66 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { useFormikContext } from 'formik';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, TextInput, View, Animated } from 'react-native';
+import { useFormikContext, useFormik } from 'formik';
 
-import TextInput from '../TextInput';
+import Text from '../Text';
 import ErrorMessage from './ErrorMessage';
+import Colors from '../../Theme/Color';
 
 export default function TextInputField({
-  name, style, title, styleTitle, ...otherProps
+  name, style, title, styleTitle, lengthValue, ...otherProps
 }) {
+
+  const [isFocus, setIsFocus] = useState(false);
+
   const {
-    handleChange, errors, setFieldTouched, touched,
+    handleChange, errors, setFieldTouched, touched, values
   } = useFormikContext();
 
-  return (
-        <View>
-            <TextInput
-                {...otherProps}
-                title={title}
-                onBlur={() => setFieldTouched(name)}
-                style={style}
-                onChangeText={handleChange(name)} />
-            <ErrorMessage error={errors[name]} visible={touched[name]} />
+  const handleBlur = () => {
+    if (values[name].length > 0) return;
+    setIsFocus(false)
+  };
 
-        </View>
+  const handleFocus = () => setIsFocus(true);
+
+  const titleStyle = {
+    marginLeft: 5,
+    color: Colors.grayInput,
+    position: 'absolute',
+    left: 6,
+    top: !isFocus ? 14 : 2,
+    fontSize: !isFocus ? 20 : 14,
+  }
+  console.log(errors[name]);
+
+  return (
+    <>
+      <View style={styles.container}>
+        <Text title={title} style={titleStyle} />
+        <TextInput
+          {...otherProps}
+          onBlur={() => {
+            setFieldTouched(name)
+            handleBlur()
+          }}
+          onFocus={() => handleFocus()}
+          style={styles.text}
+          onChangeText={handleChange(name)} />
+      </View>
+      <ErrorMessage error={errors[name]} visible={touched[name]} />
+    </>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 25,
+    borderRadius: 10,
+    borderColor: Colors.grayInput,
+    borderWidth: 1,
+  },
+  text: {
+    marginTop: 8,
+    marginLeft: 5
+  }
+});

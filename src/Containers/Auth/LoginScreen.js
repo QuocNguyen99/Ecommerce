@@ -3,6 +3,7 @@ import {
     StyleSheet, View, Text, Dimensions, Image, TouchableOpacity,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import * as Yup from 'yup';
 
 import Header from '../../Components/Header';
 // import Text from '../Components/Text';
@@ -15,7 +16,12 @@ import ButtonSmall from '../../Components/ButtonSmall';
 
 const { width } = Dimensions.get('screen');
 
-export default function LoginScreen() {
+const LoginSchema = Yup.object().shape({
+    email: Yup.string().email().required().label('Email'),
+    password: Yup.string().required().label('Password').min(6).max(50)
+})
+
+export default function LoginScreen({ navigation }) {
     const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
     const handleBack = () => alert('Back');
@@ -24,15 +30,15 @@ export default function LoginScreen() {
     return (
         <View style={styles.container}>
             <Header
-                onPress={handleBack}
-                colorImage='black'
+            // onPress={handleBack}
+            // colorImage='black'
             />
             <View style={styles.body}>
                 <Text style={styles.welcome} >Welcome to Login</Text>
                 <Text style={styles.normalText} >Please fill E-mail & password to login your app account.
                         <Text
                         style={styles.textSignIn}
-                        onPress={() => alert('Move to Sign Up')}>
+                        onPress={() => navigation.navigate('Register')}>
                         Sign Up
                         </Text>
                 </Text>
@@ -41,16 +47,18 @@ export default function LoginScreen() {
                     <FormField
                         initialValues={{ email: '', password: '' }}
                         onSubmit={(value) => alert(`${value.email}++${value.password}`)}
+                        validationSchema={LoginSchema}
                     >
                         <TextInputField
                             autoCapitalize='none'
+                            autoFocus
                             // styleTitle={styles.textSubTitle}
                             name='email'
                             title='Email'
                         />
                         <TextInputField
                             autoCapitalize='none'
-                            secureTextEntry
+                            isPassword
                             // styleTitle={styles.textSubTitle}
                             name='password'
                             title='Password'

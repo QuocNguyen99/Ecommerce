@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native';
+import * as Yup from 'yup';
 
 import Header from '../../Components/Header';
 import Colors from '../../Theme/Color';
@@ -7,8 +8,14 @@ import FormField from '../../Components/Form/FormField';
 import TextInputField from '../../Components/Form/TextInputField';
 import ButtonSubmit from '../../Components/Form/ButtonSubmit';
 
-export default function RegisterScreen() {
-    const handleBack = () => alert('Back');
+const RegisterSchema = Yup.object().shape({
+    username: Yup.string().required().label('Username').min(1).max(50),
+    email: Yup.string().email().required().label('Email'),
+    password: Yup.string().required().label('Password').min(6).max(50)
+})
+
+export default function RegisterScreen({ navigation }) {
+    const handleBack = () => navigation.goBack();
     return (
         <View style={styles.container}>
             <Header
@@ -20,7 +27,7 @@ export default function RegisterScreen() {
                 <Text style={styles.normalText} >Do you already have account?
                         <Text
                         style={styles.textSignIn}
-                        onPress={() => alert('Move to Sign Up')}> Sign In
+                        onPress={() => navigation.navigate('Login')}> Sign In
                         </Text>
                 </Text>
 
@@ -28,6 +35,7 @@ export default function RegisterScreen() {
                     <FormField
                         initialValues={{ username: '', email: '', password: '' }}
                         onSubmit={(value) => alert(`${value.email}++${value.password}`)}
+                        validationSchema={RegisterSchema}
                     >
                         <TextInputField
                             autoCapitalize='none'
