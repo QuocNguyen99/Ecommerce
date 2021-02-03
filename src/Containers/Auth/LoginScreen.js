@@ -4,13 +4,14 @@ import {
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
-import Header from '../Components/Header';
+import Header from '../../Components/Header';
 // import Text from '../Components/Text';
-import Colors from '../Theme/Color';
-import FormField from '../Components/Form/FormField';
-import TextInputField from '../Components/Form/TextInputField';
-import ButtonSubmit from '../Components/Form/ButtonSubmit';
-import ButtonSmall from '../Components/ButtonSmall';
+import Colors from '../../Theme/Color';
+import FormField from '../../Components/Form/FormField';
+import TextInputField from '../../Components/Form/TextInputField';
+import ButtonSubmit from '../../Components/Form/ButtonSubmit';
+import ButtonSmall from '../../Components/ButtonSmall';
+
 
 const { width } = Dimensions.get('screen');
 
@@ -28,8 +29,7 @@ export default function LoginScreen() {
             />
             <View style={styles.body}>
                 <Text style={styles.welcome} >Welcome to Login</Text>
-                <Text style={styles.normalText} >Please fill
-                E-mail & password to login your app account.
+                <Text style={styles.normalText} >Please fill E-mail & password to login your app account.
                         <Text
                         style={styles.textSignIn}
                         onPress={() => alert('Move to Sign Up')}>
@@ -44,14 +44,14 @@ export default function LoginScreen() {
                     >
                         <TextInputField
                             autoCapitalize='none'
-                            styleTitle={styles.textSubTitle}
+                            // styleTitle={styles.textSubTitle}
                             name='email'
                             title='Email'
                         />
                         <TextInputField
                             autoCapitalize='none'
                             secureTextEntry
-                            styleTitle={styles.textSubTitle}
+                            // styleTitle={styles.textSubTitle}
                             name='password'
                             title='Password'
                         />
@@ -76,7 +76,7 @@ export default function LoginScreen() {
                             title='Gmail'
                             onPress={handleMail}
                         >
-                            <Image source={require('../Assest/Icons/gmail.png')} style={styles.imageOtherButton} />
+                            <Image source={require('../../Assest/Icons/gmail.png')} style={styles.imageOtherButton} />
                         </ButtonSmall>
 
                         <ButtonSmall
@@ -85,7 +85,7 @@ export default function LoginScreen() {
                             title='Facebook'
                             onPress={handleFacebook}
                         >
-                            <Image source={require('../Assest/Icons/facebook.png')} style={styles.imageOtherButton} />
+                            <Image source={require('../../Assest/Icons/facebook.png')} style={styles.imageOtherButton} />
                         </ButtonSmall>
                     </View>
                 </View>
