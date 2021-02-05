@@ -1,0 +1,13 @@
+{
+    "welcomelogin": "Xin chào, Đăng nhập",
+    "subTextLogin": "Vui lòng điền e-mail và mật khẩu để đăng nhập ứng dụng.",
+    "welcome-register": "Tạo tài khoản",
+    "subTextRegister": "Bạn đã có tài khoản ?",
+    "email": "Tài khoản",
+    "password": "Mật khẩu",
+    "buttonLogin": "Đăng nhập",
+    "buttonRegister": "Tạo tài khoản",
+    "username": "Tên người dùng",
+    "signup": "Đăng ký",
+    "signin": "Đăng nhập"
+}

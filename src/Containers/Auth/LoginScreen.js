@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {
-    StyleSheet, View, Text, Dimensions, Image, TouchableOpacity,
+    StyleSheet, View, Dimensions, Image,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
 import Header from '../../Components/Header';
-// import Text from '../Components/Text';
+import Text from '../../Components/Text';
 import Colors from '../../Theme/Color';
 import FormField from '../../Components/Form/FormField';
 import TextInputField from '../../Components/Form/TextInputField';
@@ -23,7 +24,7 @@ const LoginSchema = Yup.object().shape({
 
 export default function LoginScreen({ navigation }) {
     const [toggleCheckBox, setToggleCheckBox] = useState(false);
-
+    const { t, i18n } = useTranslation();
     const handleBack = () => alert('Back');
     const handleMail = () => alert('handleMail');
     const handleFacebook = () => alert('handleFacebook');
@@ -34,13 +35,13 @@ export default function LoginScreen({ navigation }) {
             // colorImage='black'
             />
             <View style={styles.body}>
-                <Text style={styles.welcome} >Welcome to Login</Text>
-                <Text style={styles.normalText} >Please fill E-mail & password to login your app account.
-                        <Text
+                <Text style={styles.welcome} >{t('welcomelogin')}</Text>
+                <Text style={styles.normalText} >{t('subTextLogin')}
+                    <Text
                         style={styles.textSignIn}
                         onPress={() => navigation.navigate('Register')}>
-                        Sign Up
-                        </Text>
+                        {t('signup')}
+                    </Text>
                 </Text>
 
                 <View style={styles.input}>
@@ -54,14 +55,14 @@ export default function LoginScreen({ navigation }) {
                             autoFocus
                             // styleTitle={styles.textSubTitle}
                             name='email'
-                            title='Email'
+                            title={t('email')}
                         />
                         <TextInputField
                             autoCapitalize='none'
                             isPassword
                             // styleTitle={styles.textSubTitle}
                             name='password'
-                            title='Password'
+                            title={t('password')}
                         />
 
                         <CheckBox
@@ -72,7 +73,7 @@ export default function LoginScreen({ navigation }) {
                         />
                         <View style={styles.containerButton}>
                             <ButtonSubmit
-                                title='Login Now'
+                                title={t('buttonLogin')}
                                 style={styles.button}
                             />
                         </View>
@@ -96,6 +97,15 @@ export default function LoginScreen({ navigation }) {
                             <Image source={require('../../Assest/Icons/facebook.png')} style={styles.imageOtherButton} />
                         </ButtonSmall>
                     </View>
+                    <ButtonSmall
+                        style={styles.buttonOtherFacebook}
+                        styleTitle={styles.otherButtonTitle}
+                        title='Change langue'
+                        onPress={() => i18n.changeLanguage('en')}
+                    >
+                        <Image source={require('../../Assest/Icons/facebook.png')} style={styles.imageOtherButton} />
+                    </ButtonSmall>
+
                 </View>
             </View>
         </View>

@@ -5,7 +5,7 @@ import Text from '../Text';
 export default function ErrorMessage({ error, visible }) {
   if (!visible || !error) return null;
   return (
-    <Text title={error} style={styles.text} />
+    <Text style={styles.text} >{error}</Text>
   );
 }
 

@@ -31,12 +31,10 @@ export default function TextInputField({
     top: !isFocus ? 14 : 2,
     fontSize: !isFocus ? 20 : 14,
   }
-  console.log(errors[name]);
-
   return (
     <>
       <View style={styles.container}>
-        <Text title={title} style={titleStyle} />
+        <Text style={titleStyle} >{title}</Text>
         <TextInput
           {...otherProps}
           onBlur={() => {

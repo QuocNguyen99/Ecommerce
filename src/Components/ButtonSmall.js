@@ -2,8 +2,10 @@
 /* eslint-disable indent */
 import React from 'react';
 import {
-    StyleSheet, Text, TouchableOpacity,
+    StyleSheet, TouchableOpacity,
 } from 'react-native';
+
+import Text from "../Components/Text";
 
 export default function ButtonSmall({
     title,

@@ -7,7 +7,7 @@ import Text from './Text';
 export default function AppTextInput({ title, style, ...otherProps }) {
   return (
     <View style={styles.container}>
-      <Text title={title} style={styles.textTitle} />
+      <Text style={styles.textTitle} >{title}</Text>
       <View style={[styles.containerInput, style]}>
         <TextInput style={styles.textInput} {...otherProps} />
       </View>

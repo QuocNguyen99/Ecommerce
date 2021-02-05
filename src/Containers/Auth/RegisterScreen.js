@@ -1,8 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import Header from '../../Components/Header';
+import Text from '../../Components/Text';
 import Colors from '../../Theme/Color';
 import FormField from '../../Components/Form/FormField';
 import TextInputField from '../../Components/Form/TextInputField';
@@ -15,6 +17,7 @@ const RegisterSchema = Yup.object().shape({
 })
 
 export default function RegisterScreen({ navigation }) {
+    const { t } = useTranslation();
     const handleBack = () => navigation.goBack();
     return (
         <View style={styles.container}>
@@ -23,12 +26,12 @@ export default function RegisterScreen({ navigation }) {
                 colorImage='black'
             />
             <View style={styles.body}>
-                <Text style={styles.welcome} >Create your account</Text>
-                <Text style={styles.normalText} >Do you already have account?
-                        <Text
+                <Text style={styles.welcome} >{t('welcome-register')}</Text>
+                <Text style={styles.normalText} >{t('subTextRegister')}
+                    <Text
                         style={styles.textSignIn}
-                        onPress={() => navigation.navigate('Login')}> Sign In
-                        </Text>
+                        onPress={() => navigation.navigate('Login')}>{t('signin')}
+                    </Text>
                 </Text>
 
                 <View style={styles.input}>
@@ -41,25 +44,25 @@ export default function RegisterScreen({ navigation }) {
                             autoCapitalize='none'
                             // styleTitle={styles.textSubTitle}
                             name='username'
-                            title='Username'
+                            title={t('username')}
                         />
                         <TextInputField
                             autoCapitalize='none'
                             // styleTitle={styles.textSubTitle}
                             name='email'
-                            title='Email'
+                            title={t('email')}
                         />
                         <TextInputField
                             autoCapitalize='none'
                             secureTextEntry
                             // styleTitle={styles.textSubTitle}
                             name='password'
-                            title='Password'
+                            title={t('password')}
                         />
 
                         <View style={styles.containerButton}>
                             <ButtonSubmit
-                                title='Create account'
+                                title={t('buttonRegister')}
                                 style={styles.button}
                             />
                         </View>
