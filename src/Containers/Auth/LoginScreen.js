@@ -5,6 +5,7 @@ import {
 import CheckBox from '@react-native-community/checkbox';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
+import RNRestart from 'react-native-restart';
 
 import Header from '../../Components/Header';
 import Text from '../../Components/Text';
@@ -101,7 +102,10 @@ export default function LoginScreen({ navigation }) {
                         style={styles.buttonOtherFacebook}
                         styleTitle={styles.otherButtonTitle}
                         title='Change langue'
-                        onPress={() => i18n.changeLanguage('en')}
+                        onPress={() => {
+                            RNRestart.Restart()
+                            i18n.changeLanguage('en')
+                        }}
                     >
                         <Image source={require('../../Assest/Icons/facebook.png')} style={styles.imageOtherButton} />
                     </ButtonSmall>
